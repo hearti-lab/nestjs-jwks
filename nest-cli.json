@@ -1,0 +1,17 @@
+{
+    "extends": "../../",
+    "projects": {
+        "surety.ai-jwt": {
+            "type": "library",
+            "root": "/",
+            "entryFile": "index",
+            "sourceRoot": "src",
+            "compilerOptions": {
+                "tsConfigPath": "src/tsconfig.lib.json"
+            }
+        }
+    },
+    "compilerOptions": {
+        "webpack": false
+    }
+}
