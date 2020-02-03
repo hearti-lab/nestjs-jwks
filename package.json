@@ -1,7 +1,7 @@
 {
-    "name": "surety.ai-jwt",
+    "name": "jwks",
     "version": "0.0.1",
-    "description": "Surety.AI-jwt",
+    "description": "Surety.AI-jwks",
     "author": "Hearti Lab",
     "license": "MIT",
     "scripts": {},
@@ -10,9 +10,9 @@
         "lib/**/*"
     ],
     "dependencies": {
-        "@nestjs/common": "^6.0.0",
-        "@nestjs/core": "^6.0.0",
-        "@nestjs/jwt": "^6.0.0",
+        "@nestjs/common": "^6.11.4",
+        "@nestjs/core": "^6.11.4",
+        "@nestjs/jwt": "^6.1.1",
         "reflect-metadata": "^0.1.12"
     },
     "devDependencies": {
