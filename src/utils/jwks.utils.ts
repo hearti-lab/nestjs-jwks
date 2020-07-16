@@ -1,5 +1,5 @@
 export class JwksUtils {
-    static prepadSigned(hexStr: string) {
+    public static prepadSigned(hexStr: string): string {
         const msb = hexStr[0];
         if (msb < '0' || msb > '7') {
             return `00${hexStr}`;
@@ -7,7 +7,7 @@ export class JwksUtils {
         return hexStr;
     }
 
-    static toHex(number: number) {
+    public static toHex(number: number): string {
         const nstr = number.toString(16);
         if (nstr.length % 2) {
             return `0${nstr}`;
@@ -15,7 +15,7 @@ export class JwksUtils {
         return nstr;
     }
 
-    static encodeLengthHex(n: number) {
+    public static encodeLengthHex(n: number): string {
         if (n <= 127) {
             return JwksUtils.toHex(n);
         }
@@ -24,7 +24,7 @@ export class JwksUtils {
         return JwksUtils.toHex(lengthOfLengthByte) + nHex;
     }
 
-    static rsaPublicKeyToPEM(modulusB64: any, exponentB64: any) {
+    public static rsaPublicKeyToPEM(modulusB64: any, exponentB64: any): string {
         const modulus = Buffer.from(modulusB64, 'base64');
         const exponent = Buffer.from(exponentB64, 'base64');
         const modulusHex = JwksUtils.prepadSigned(modulus.toString('hex'));
@@ -46,9 +46,6 @@ export class JwksUtils {
 
         const der = Buffer.from(encodedPubkey, 'hex').toString('base64');
 
-        let pem = `-----BEGIN RSA PUBLIC KEY-----\n`;
-        pem += `${der.match(/.{1,64}/g).join('\n')}`;
-        pem += `\n-----END RSA PUBLIC KEY-----\n`;
-        return pem;
+        return `-----BEGIN RSA PUBLIC KEY-----\n${der.match(/.{1,64}/g).join('\n')}\n-----END RSA PUBLIC KEY-----\n`;
     }
 }

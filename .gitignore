@@ -60,12 +60,4 @@ typings/
 # next.js build output
 .next
 dist
-ormconfig.json
-
-# config files
-etc/configs/*
-!etc/configs/*.example
-etc/credentials/*
-
-test/unit-test/config/*.config.json
-test/e2e/config/*.config.json
+lib

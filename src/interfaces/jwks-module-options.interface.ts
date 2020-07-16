@@ -1,3 +1,5 @@
+import { Jwk } from './jwks.interface';
+
 export interface JwksModuleOptions {
-    jwksSecretData: { [key: string]: any };
+    keys: Jwk[];
 }

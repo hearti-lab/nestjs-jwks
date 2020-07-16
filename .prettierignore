@@ -1,5 +1,2 @@
 dist/
-etc/
-scripts/
 node_modules/
-server/migrations

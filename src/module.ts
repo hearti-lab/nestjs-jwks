@@ -1,11 +1,18 @@
 import { DynamicModule, Module } from '@nestjs/common';
-import { JWKS_MODULE_OPTIONS } from './constants';
-import { JwksService } from './jwks.service';
-import { JwksModuleOptions, JwksModuleAsyncOptions } from './interfaces';
+import { JwksServiceToken, JWKS_MODULE_OPTIONS } from './constants';
+import { JwksModuleAsyncOptions, JwksModuleOptions } from './interfaces';
+import { JwksService } from './services';
+
+const providers = [
+    {
+        provide: JwksServiceToken,
+        useClass: JwksService
+    }
+];
 
 @Module({})
 export class JwksModule {
-    static register(options: JwksModuleOptions): DynamicModule {
+    public static register(options: JwksModuleOptions): DynamicModule {
         return {
             module: JwksModule,
             providers: [
@@ -13,13 +20,13 @@ export class JwksModule {
                     provide: JWKS_MODULE_OPTIONS,
                     useValue: options
                 },
-                JwksService
+                ...providers
             ],
-            exports: [JwksService]
+            exports: [...providers]
         };
     }
 
-    static registerAsync(options: JwksModuleAsyncOptions): DynamicModule {
+    public static registerAsync(options: JwksModuleAsyncOptions): DynamicModule {
         return {
             imports: options.imports,
             module: JwksModule,
@@ -29,9 +36,9 @@ export class JwksModule {
                     useFactory: options.useFactory,
                     inject: options.inject
                 },
-                JwksService
+                ...providers
             ],
-            exports: [JwksService]
+            exports: [...providers]
         };
     }
 }
