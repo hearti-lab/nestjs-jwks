@@ -1,17 +1,10 @@
 {
-    "extends": "../../",
-    "projects": {
-        "surety.ai-jwt": {
-            "type": "library",
-            "root": "/",
-            "entryFile": "index",
-            "sourceRoot": "src",
-            "compilerOptions": {
-                "tsConfigPath": "src/tsconfig.lib.json"
-            }
-        }
-    },
+    "collection": "@nestjs/schematics",
+    "root": "/",
+    "sourceRoot": "src",
+    "entryFile": "index",
     "compilerOptions": {
-        "webpack": false
+        "webpack": false,
+        "tsConfigPath": "tsconfig.json"
     }
 }

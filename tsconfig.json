@@ -1,22 +1,18 @@
 {
-    "paths": {
-        "@surety.ai/surety.ai-jwt": ["lib"],
-        "@surety.ai/surety.ai-jwt/*": ["lib/*"]
-    },
     "compilerOptions": {
         "module": "commonjs",
         "declaration": true,
         "removeComments": true,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
+        "allowSyntheticDefaultImports": true,
         "esModuleInterop": true,
         "target": "es2017",
         "sourceMap": true,
-        "outDir": "./lib",
+        "outDir": "./dist",
         "baseUrl": "./",
-        "incremental": true,
-        "skipLibCheck": true
+        "incremental": true
     },
-    "include": ["./src/**/*"],
+    "include": ["src/**/*"],
     "exclude": ["node_modules"]
 }

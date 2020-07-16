@@ -1,7 +1,7 @@
 import { Secret, sign, SignOptions, decode, verify, VerifyOptions, DecodeOptions } from 'jsonwebtoken';
 
 export class JwtUtils {
-    static async sign(payload: any, secretOrPrivateKey: Secret, options?: SignOptions): Promise<string> {
+    public static async sign(payload: any, secretOrPrivateKey: Secret, options?: SignOptions): Promise<string> {
         return new Promise((resolve, reject) => {
             sign(payload, secretOrPrivateKey, options, (error: Error, encoded: string) => {
                 if (error) {
@@ -13,15 +13,15 @@ export class JwtUtils {
         });
     }
 
-    static decode(token: string, options?: DecodeOptions): any {
+    public static decode(token: string, options?: DecodeOptions): any {
         return decode(token, options);
     }
 
-    static async verify(
+    public static async verify(
         token: string,
         secretOrPublicKey: string | Buffer,
         options?: VerifyOptions
-    ): Promise<object | string> {
+    ): Promise<any | string> {
         return new Promise((resolve, reject) => {
             verify(token, secretOrPublicKey, options, (error: Error, decoded: any) => {
                 if (error) {
