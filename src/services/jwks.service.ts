@@ -6,10 +6,14 @@ import { JwksUtils, JwtUtils } from '../utils';
 
 @Injectable()
 export class JwksService implements IJwksService {
-    private readonly keys: Jwks[];
+    private readonly keys: Record<string, Jwks>;
 
     constructor(@Inject(JWKS_MODULE_OPTIONS) options: JwksModuleOptions) {
-        this.keys = this.getSigningKeys(options.keys || []);
+        const keys = this.getSigningKeys(options.keys || []);
+        this.keys = keys.reduce((previousValue, currentValue) => {
+            previousValue[currentValue.kid] = currentValue;
+            return previousValue;
+        }, {});
     }
 
     public getJwtSecret(token: string): Secret {
@@ -45,7 +49,7 @@ export class JwksService implements IJwksService {
     }
 
     private getSigningKey(kid: string): Jwks {
-        const key = this.keys.find((item) => item.kid === kid);
+        const key = this.keys[kid];
         if (!key) {
             throw new Error('The Jwks did not contain any keys');
         }
